@@ -28,13 +28,16 @@ app.post('/login', (req, res) => {
     if(body.email && body.password != null ){
         let user = body;
         UserDAO.getUserByEmail(user).then( ( fb_user ) =>{
+            console.log(fb_user)
+            console.log(user)
             if( fb_user.password.toLowerCase() == user.password.toLowerCase() ){
                 delete fb_user.password;
                 res.status(200).json({error: false, statusCode: 200, user: fb_user});
             }else{
-                res.status(403).json({errorMsg: "WRONG_PASSWORD"});
+                res.status(403).json({errorMsg: "WRONG_CREDENTIALS" , error: true, statusCode:403});
             }
         }).catch((error) => {
+            console.log(error)
             res.status(error.statusCode).json(error);
         })
     }else{
@@ -43,8 +46,18 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/signup', (req,res) => {
-  // res.status(409).json({error: true, statusCode:500 ,errorMsg: "USER_ALREADY_EXISTS" })
-    res.status(200).json({error: false, statusCode:200, user: { firstname: 'Rabah' , email: 'rabah.zeineddine@gmail.com' }})
+    var body = req.body;
+    if (body.firstname && body.lastname && body.email && body.password ) {
+        var user = body
+        UserDAO.addUser(user).then(function () {
+            delete user.password;
+            res.status(200).json({ msg: "USER_REGISTERED_SUCCESSFULLY" , user, error: false , statusCode: 200 });
+        }).catch((error) => {
+            res.status(error.statusCode).json(error);
+        })
+    } else {
+        res.status(400).json({ errorMsg: "BAD_REQUEST", error: true, statusCode: 400 });
+    }
 })
 
 

@@ -15,5 +15,20 @@
     "firebase": "^5.2.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RabahZeineddine/MyReads-Backend.git"
+  },
+  "author": "Rabah Zeineddine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RabahZeineddine/MyReads-Backend/issues"
+  },
+  "homepage": "https://github.com/RabahZeineddine/MyReads-Backend#readme",
+  "description": "",
+  "engines": {
+    "node": "8.11.3"
   }
 }

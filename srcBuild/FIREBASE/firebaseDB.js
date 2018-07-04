@@ -4,9 +4,9 @@ var USER_DOCUMENT = 'users';
 
 // Initialize Firebase
 var config = {
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    databaseURL: process.env.databaseURL
+    apiKey: process.env.apiKey || 'AIzaSyCxT0EcOif39gnkwZ5lnbFuwYGh0YPNRLg' ,
+    authDomain: process.env.authDomain || 'myreads-773fd.firebaseapp.com' ,
+    databaseURL: process.env.databaseURL || 'https://myreads-773fd.firebaseio.com'
 };
 
 firebase.initializeApp(config);
