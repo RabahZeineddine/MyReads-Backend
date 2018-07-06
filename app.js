@@ -27,8 +27,6 @@ app.post('/login', (req, res) => {
     if(body.email && body.password != null ){
         let user = body;
         UserDAO.getUserByEmail(user).then( ( fb_user ) =>{
-            console.log(fb_user)
-            console.log(user)
             if( fb_user.password.toLowerCase() == user.password.toLowerCase() ){
                 delete fb_user.password;
                 res.status(200).json({error: false, statusCode: 200, user: fb_user});
