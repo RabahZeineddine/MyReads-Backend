@@ -27,7 +27,7 @@ const getUserByEmail = (user) => {
 const addUser = (user) => {
     return new Promise((resolve, reject) => {
         getUserByEmail(user).then(() => {
-            reject({ statusCode: 409, errorMsg: "USER_ALREADY_EXISTS", error:true });
+            reject({ statusCode: 200, errorMsg: "USER_ALREADY_EXISTS", error:true });
         }).catch((error) => {
             if (error.statusCode == 404) {
                 let key = database.ref().child('users').push().key

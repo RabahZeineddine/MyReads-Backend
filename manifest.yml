@@ -1,6 +1,6 @@
 ---
 applications:
-- name: myreadsbackend
+- name: readable
   memory: 256M
   instances: 1
-  disk_quota: 512M
+  disk_quota: 256M

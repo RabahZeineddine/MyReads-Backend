@@ -29,7 +29,7 @@ app.post('/login', (req, res) => {
         UserDAO.getUserByEmail(user).then( ( fb_user ) =>{
             if( fb_user.password.toLowerCase() == user.password.toLowerCase() ){
                 delete fb_user.password;
-                res.status(200).json({error: false, statusCode: 200, user: fb_user});
+                res.status(200).json({error: false, statusCode: 200, user: fb_user, msg: "USER_LOGGED_SUCCESSFULLY"});
             }else{
                 res.status(403).json({errorMsg: "WRONG_CREDENTIALS" , error: true, statusCode:403});
             }
@@ -48,6 +48,7 @@ app.post('/signup', (req,res) => {
         var user = body
         UserDAO.addUser(user).then(function () {
             delete user.password;
+            delete user.confirmPassword;
             res.status(200).json({ msg: "USER_REGISTERED_SUCCESSFULLY" , user, error: false , statusCode: 200 });
         }).catch((error) => {
             res.status(error.statusCode).json(error);
